@@ -9,6 +9,12 @@
     android:background="@color/teal_200"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
     <TextView
         android:id="@+id/textViewTrescPytania"
         android:layout_width="wrap_content"

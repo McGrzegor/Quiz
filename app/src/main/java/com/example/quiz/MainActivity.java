@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button buttonTak;
 
+    private Button buttonNie;
+
 
 
 
@@ -48,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        buttonNie = findViewById(R.id.button2);
+        buttonNie.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        sprawdzToPytanie(false);
+                    }
+                }
+        );
+
+
+
         buttonNastepne = findViewById(R.id.button4);
         buttonNastepne.setOnClickListener(
                 new View.OnClickListener() {
@@ -56,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
                         aktualnepytanie++;
                             if (aktualnepytanie == listaPytan.size()){
                                 buttonNastepne.setVisibility(View.INVISIBLE);
+                                buttonTak.setVisibility(View.INVISIBLE);
+                                buttonNie.setVisibility(View.INVISIBLE);
+                                textView.setText("Koniec testu otrzymano ..... punktow");
+                                int ile = podliczPunkty();
+                                        textView.setText("Zakonczono test twoja liczba punktow wynosi "+String.valueOf(ile)+ " punktow");
                             }
                             else{
                                 wstawPytanie(aktualnepytanie);
@@ -109,4 +128,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private int podliczPunkty() {
+        int ilepunktow = 0;
+
+        for (Pytanie pytanie : listaPytan) {
+            if (pytanie.isUdzielonoPoprawnaOdpowidz()) {
+                ilepunktow++;
+            }
+
+        }
+
+        return ilepunktow;
+    }
+
 }
